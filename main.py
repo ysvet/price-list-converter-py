@@ -20,7 +20,6 @@ def button_clicked():
         my_label_convert.config(text="Please select an operator")
 
 
-
 def idt():
     data = pandas.read_csv("file.csv")
     data_no_mexico = {row["Dial Code"]: row["Gold $ USD"] for (index, row) in data.iterrows()
@@ -37,7 +36,7 @@ def idt():
 
 
 def worldcall():
-    data = pandas.read_excel("Worldcall_Premium_EUR.xls", 3)
+    data = pandas.read_excel(r"Worldcall_Premium_EUR.xls", 3)
     data_1 = {row["Destination"]: row["First Price"] for (index, row) in data.iterrows()
               if not row["First Price"] == 0}
 
@@ -52,7 +51,6 @@ my_label_text.config(padx=20, pady=20)
 my_label_convert = Label(text=" ", font=("Arial", 8, "bold"))
 my_label_convert.grid(column=0, row=4, sticky="ew")
 my_label_convert.config(padx=20, pady=20)
-
 
 # def select_operator():
 #
