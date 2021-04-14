@@ -1,3 +1,11 @@
+GRAY = "#f3f4ed"
+MID_GRAY = "#536162"
+DARK_GRAY = "#424642"
+BROWN = "#c06014"
+FONT_NAME = "Courier"
+WORLDCALL_FILE="Worldcall_Premium_EUR.xls"
+
+
 from tkinter import *
 import pandas
 import glob
@@ -5,7 +13,7 @@ import glob
 window = Tk()
 window.title("Price-list converter")
 window.minsize(width=250, height=250)
-window.config(padx=15, pady=15)
+window.config(padx=15, pady=15, bg=GRAY)
 
 
 def idt_file():
@@ -19,11 +27,11 @@ def idt_file():
 
 def worldcall_file():
     try:
-        my_label_convert.config(text="T357 file has been created")
-        return glob.glob("Worldcall_Premium_EUR.xls")[0]
+        my_label_convert.config(text="T357 file has been created", fg=DARK_GRAY)
+        return glob.glob(WORLDCALL_FILE)[0]
     except Exception as error:
         print(error)
-        my_label_convert.config(text="No files to convert found")
+        my_label_convert.config(text="No files to convert found", fg=BROWN)
         # except Exception as error:
     #     print(error)
 
@@ -40,7 +48,7 @@ def button_clicked():
         worldcall()
 
     elif not selected_operator:
-        my_label_convert.config(text="Please select an operator")
+        my_label_convert.config(text="Please select an operator", bg=GRAY, fg=BROWN)
 
 
 
@@ -75,13 +83,13 @@ def worldcall():
         pass
 
 
-my_label_text = Label(text="Price-list converter", font=("Arial", 14, "bold"))
+my_label_text = Label(text="Price-list converter", font=("Arial", 14, "bold"), fg=GRAY)
 my_label_text.grid(column=0, row=0, )
-my_label_text.config(padx=20, pady=20)
+my_label_text.config(padx=20, pady=20, bg=MID_GRAY)
 
 my_label_convert = Label(text=" ", font=("Arial", 8, "bold"))
 my_label_convert.grid(column=0, row=4, sticky="ew")
-my_label_convert.config(padx=20, pady=20)
+my_label_convert.config(padx=20, pady=20, bg=GRAY)
 
 # def select_operator():
 #
@@ -90,10 +98,10 @@ radiobutton1 = Radiobutton(text="IDT", value=1, variable=radio_state)
 radiobutton2 = Radiobutton(text="Worldcall", value=2, variable=radio_state)
 radiobutton1.grid(column=0, row=1, sticky="w")
 radiobutton2.grid(column=0, row=2, sticky="w")
-radiobutton2.config(padx=10, pady=10)
-radiobutton1.config(padx=10, pady=5)
+radiobutton2.config(padx=10, pady=5, bg=GRAY)
+radiobutton1.config(padx=10, pady=10, bg=GRAY)
 
-button = Button(text="Convert", bg="azure2", command=button_clicked)
+button = Button(text="Convert", font=("Arial", 12, "bold"), bg=BROWN, fg=GRAY, command=button_clicked)
 button.grid(column=0, row=3, sticky="ew")
 
 window.mainloop()
