@@ -66,9 +66,10 @@ def idt():
 def worldcall():
     if worldcall_file():
         data = pandas.read_excel(worldcall_file(), 3)
-        data_1 = {row["Destination"]: row["First Price"] for (index, row) in data.iterrows()
-                  if not row["First Price"] == 0}
-
+        data_1 = {str(row["Destination"]): row["First Price"] for (index, row) in data.iterrows()
+                  if row["First Price"] != 0}
+        # data_2_to_eight_dig = {int(row["Destination"])//10000000: row["First Price"] for (index, row) in data_1.iterrows() }
+        print(data_1)
         data_ser = pandas.Series(data_1).to_frame()
         pandas.DataFrame.from_dict(data_ser).to_excel("T357.xls", header=False)
     else:
